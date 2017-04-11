@@ -28,11 +28,11 @@ class SaleOrder(models.Model):
         currency = self.env.user.company_id.currency_id
         limit_amount = self.company_id.so_double_validation_amount
         limit_amount = currency.compute(limit_amount, self.currency_id)
-        if float_compare(
-           limit_amount, self.amount_total, precision_digits=2) <= 0:
-            return True
-        else:
-            return False
+        rounding = self.currency_id.rounding
+        compare_result = float_compare(
+           limit_amount, self.amount_total, precision_rounding=rounding
+        )
+        return compare_result <= 0
 
     @api.multi
     def is_to_approve(self):
