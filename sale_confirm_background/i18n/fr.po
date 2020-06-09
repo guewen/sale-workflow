@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_confirm_background
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-28 06:18+0000\n"
+"PO-Revision-Date: 2018-06-28 06:18+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_confirm_background
+#: model:ir.ui.view,arch_db:sale_confirm_background.view_order_background_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: sale_confirm_background
+#: code:addons/sale_confirm_background/models/sale_order.py:48
+#, python-format
+msgid "Confirmation of sales order %s"
+msgstr "Confirmation de la commande %s"
+
+#. module: sale_confirm_background
+#: code:addons/sale_confirm_background/models/sale_order.py:30
+#, python-format
+msgid "Order %s is now confirmed."
+msgstr "La commande %s est maintenant confirmée."
+
+#. module: sale_confirm_background
+#: code:addons/sale_confirm_background/models/sale_order.py:45
+#, python-format
+msgid "Order %s will be confirmed in background."
+msgstr "La commande %s va être confirmée en arrière-plan."
+
+#. module: sale_confirm_background
+#: model:ir.model,name:sale_confirm_background.model_sale_order
+msgid "Sales Order"
+msgstr "Commandes"
+

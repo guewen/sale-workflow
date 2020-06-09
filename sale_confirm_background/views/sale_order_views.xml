@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_background_form" model="ir.ui.view">
+        <field name="name">sale.order.background.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority">900</field>
+        <field name="arch" type="xml">
+            <button name="action_cancel" position="after">
+                <button name="action_cancel" states="confirm_background" type="object" string="Cancel"/>
+            </button>
+            <button name="action_confirm" states="sent" position="attributes">
+                <attribute name="name">action_confirm_background</attribute>
+            </button>
+            <button name="action_confirm" states="draft" position="attributes">
+                <attribute name="name">action_confirm_background</attribute>
+            </button>
+        </field>
+    </record>
+
+</odoo>
