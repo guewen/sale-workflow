@@ -43,6 +43,15 @@ class SaleOrderLine(models.Model):
     def _prepare_procurement_values(self, group_id=False):
         """Postpone delivery according to cutoff time"""
         res = super()._prepare_procurement_values(group_id=group_id)
+        date_planned = res.get("date_planned")
+        if not date_planned:
+            return res
+        new_date_planned = self._prepare_procurement_values_cutoff_time(date_planned)
+        if new_date_planned:
+            res["date_planned"] = new_date_planned
+        return res
+
+    def _prepare_procurement_values_cutoff_time(self, date_planned):
         cutoff = self.order_id.get_cutoff_time()
         partner = self.order_id.partner_shipping_id
         if not cutoff:
@@ -63,9 +72,8 @@ class SaleOrderLine(models.Model):
                     "on line %s."
                     % (self.order_id, partner.order_delivery_cutoff_preference, self)
                 )
-            return res
+            return
         tz = cutoff.get("tz")
-        date_planned = res.get("date_planned")
         if isinstance(date_planned, str):
             # when date_planned is set from the commitment_date, it's set as
             # string...
@@ -112,8 +120,7 @@ class SaleOrderLine(models.Model):
                 new_date_planned,
             )
         )
-        res["date_planned"] = new_date_planned
-        return res
+        return new_date_planned
 
     def _expected_date(self):
         """Postpone expected_date to next cut-off"""
